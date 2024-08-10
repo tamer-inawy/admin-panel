@@ -1,0 +1,95 @@
+<div class="card">
+  <p-table
+    [value]="groups"
+    [tableStyle]="{ 'min-width': '30rem' }"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>
+          <p-button
+          icon="pi pi-plus"
+          [rounded]="true"
+          [raised]="true"
+          [text]="true"
+          (click)="onEdit()"
+          pTooltip="Add new group"
+          tooltipPosition="bottom"
+          *appRoles="[]"
+          />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-group>
+      <tr>
+        <td>{{ group.id }}</td>
+        <td>
+          {{ group.name }}
+        </td>
+        <td>
+          <p-button
+            icon="pi pi-times"
+            severity="danger"
+            [rounded]="true"
+            [raised]="true"
+            [text]="true"
+            [id]="group.id"
+            (click)="onDelete(group.id)"
+            [pTooltip]="'Delete ' + group.name"
+            tooltipPosition="bottom"
+          />
+
+          <p-button
+          icon="pi pi-pencil"
+          [rounded]="true"
+          [raised]="true"
+          [text]="true"
+          (click)="onEdit(group.id)"
+          [pTooltip]="'Edit ' + group.name"
+          tooltipPosition="bottom"
+          />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    header="Delete Group"
+    [modal]="true"
+    [(visible)]="isDeleting"
+    [style]="{ width: '25rem' }"
+    (onHide)="onHideDeleting()"
+  >
+    <span class="p-text-secondary">Are you sure?</span>
+    <div class="form-buttons">
+      <p-button label="Cancel" severity="secondary" (click)="onCancelDeleting()" />
+      <p-button
+        label="Delete"
+        severity="danger"
+        (click)="onConfirmDeleting()"
+      />
+    </div>
+  </p-dialog>
+
+  <p-dialog
+    header="Add Group"
+    [modal]="true"
+    [(visible)]="isEditing"
+    [style]="{ width: '25rem' }"
+    (onHide)="onHideEditing()"
+  >
+
+    <form [formGroup]="form">
+      <p-floatLabel>
+        <input pInputText id="name" name="name" type="name" formControlName="name" />
+        <label for="name">Name:</label>
+      </p-floatLabel>
+      <div class="form-buttons">
+        <p-button label="Cancel" severity="secondary" (click)="onCancelEditing()" />
+        <p-button label="Save" (click)="onConfirmEditing()" />
+      </div>
+    </form>
+
+  </p-dialog>
+</div>

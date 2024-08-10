@@ -1,0 +1,67 @@
+<div class="card">
+  <div class="raw-buttons" *appRoles="[]">
+    <p-button
+      icon="pi pi-plus"
+      label="New user"
+      [raised]="true"
+      (click)="onAddingUser()"
+      pTooltip="Add new user"
+      tooltipPosition="bottom"
+    />
+  </div>
+
+  <p-table [value]="users" [tableStyle]="{ 'min-width': '30rem' }">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Email</th>
+        <th>Group / Role</th>
+        <th *appRoles="[]"></th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>
+          <a [routerLink]="'/user/'+user.id">
+          {{ user.email }}
+</a>
+        </td>
+        <td>
+          @for(role of user.roles; track role.id) {
+          <app-role [role]="role.role" [group]="role.group?.name" />
+          }
+        </td>
+        <td *appRoles="[]">
+          <p-button
+            icon="pi pi-plus"
+            [rounded]="true"
+            [raised]="true"
+            [text]="true"
+            (click)="onAddingRole(user.id)"
+            pTooltip="Add new role"
+            tooltipPosition="bottom"
+          />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+@if(isAddingRole) {
+<p-dialog
+  header="Add Role"
+  [modal]="true"
+  [(visible)]="isAddingRole"
+  [style]="{ minWidth: '25rem' }"
+>
+  <app-role-edit [userId]="selectedUserId" (done)="onCloseAddingRole($event)" />
+</p-dialog>
+} @if(isAddingUser) {
+<p-dialog
+  header="Add User"
+  [modal]="true"
+  [(visible)]="isAddingUser"
+  [style]="{ minWidth: '25rem' }"
+>
+  <app-user-edit (done)="onCloseAddingUser($event)" />
+</p-dialog>
+}

@@ -1,0 +1,30 @@
+
+<form [formGroup]="form">
+  <div>
+    <p-floatLabel>
+      <p-dropdown
+        [options]="allRoles"
+        formControlName="role"
+        inputId="role"
+        (onChange)="onRoleChange($event)"
+      />
+      <label for="role">Select a Role</label>
+    </p-floatLabel>
+  </div>
+  <div>
+    <p-floatLabel>
+      <p-dropdown
+        [options]="groups"
+        formControlName="group"
+        inputId="group"
+        optionLabel="name"
+        optionValue="id"
+      />
+      <label for="group">Select a Group</label>
+    </p-floatLabel>
+  </div>
+  <div class="form-buttons">
+    <p-button label="Cancel" severity="secondary" (click)="onCancelAdding()" />
+    <p-button label="Save" (click)="onConfirmAdding()" [disabled]="form.invalid" [loading]="isLoading" />
+  </div>
+</form>

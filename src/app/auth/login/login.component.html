@@ -1,0 +1,31 @@
+<div class="card">
+    <form [formGroup]="form">
+      <p-floatLabel>
+        <input pInputText name="email" type="email" formControlName="email" />
+        <label for="email">Email:</label>
+      </p-floatLabel>
+
+      <p-floatLabel>
+        <p-password
+          name="password"
+          formControlName="password"
+          minlength="4"
+          [feedback]="false"
+          [toggleMask]="true"
+        />
+        <label for="password">Password:</label>
+      </p-floatLabel>
+
+      <div class="form-buttons">
+        <button
+          pButton
+          class="p-button"
+          (click)="login()"
+          [loading]="isLoading"
+          [disabled]="form.invalid"
+        >
+          Login
+        </button>
+      </div>
+    </form>
+</div>

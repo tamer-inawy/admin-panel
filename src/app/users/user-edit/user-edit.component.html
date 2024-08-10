@@ -1,0 +1,30 @@
+<form [formGroup]="form" autocomplete="off">
+  <p-floatLabel>
+    <input
+      pInputText
+      id="email"
+      name="email"
+      type="email"
+      formControlName="email"
+    />
+    <label for="email">Email:</label>
+  </p-floatLabel>
+  <p-floatLabel>
+    <input
+      pInputText
+      id="password"
+      name="password"
+      type="password"
+      formControlName="password"
+    />
+    <label for="password">{{ userId ? 'Change password' : 'Password:'}}</label>
+  </p-floatLabel>
+  <div class="form-buttons">
+    <p-button label="Cancel" severity="secondary" (click)="onCancel()" />
+    <p-button
+      label="Save"
+      (click)="onConfirm()"
+      [disabled]="form.invalid"
+    />
+  </div>
+</form>

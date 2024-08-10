@@ -1,0 +1,33 @@
+<div class="raw-buttons" *appRoles="editAllowedRoles">
+  <p-button
+    icon="pi pi-plus"
+    label="Edit user"
+    [raised]="true"
+    (click)="onEddingUser()"
+    pTooltip="Edit user"
+    tooltipPosition="bottom"
+  />
+</div>
+<div class="flex-row">
+  <div>Email</div>
+  <div>{{ user?.email }}</div>
+</div>
+<div class="flex-row">
+  <div>Roles:</div>
+  <div>
+    @for(role of user?.roles; track $index) {
+    <app-role [role]="role.role" [group]="role.group?.name" />
+    }
+  </div>
+</div>
+
+<p-dialog
+  header="Edit User"
+  [modal]="true"
+  [(visible)]="isEditingUser"
+  [style]="{ minWidth: '25rem' }"
+>
+@if(isEditingUser) {
+  <app-user-edit [userId]="user?.id" (done)="onCloseEditing($event)"></app-user-edit>
+}
+</p-dialog>

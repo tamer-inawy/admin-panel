@@ -1,0 +1,23 @@
+.header {
+  height: 10em;
+  margin-bottom: 1.25em;
+  padding-bottom: 0.3em;
+  padding-right: 0.3em;
+  border-radius: 6px;
+  background: linear-gradient(150deg,
+      var(--surface-100) 0,
+      var(--surface-300) 35%,
+      var(--surface-100) 100%);
+}
+
+.main {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.content {
+  flex: 1;
+  padding: 0 0 0 0.5em;
+}
