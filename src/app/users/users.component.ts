@@ -6,8 +6,6 @@ import { TableModule } from 'primeng/table';
 import { RoleComponent } from '../roles/role/role.component';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { GroupsService } from '../groups/groups.service';
-import { Group } from '../groups/group.model';
 import { RolesDirective } from '../auth/directives/roles.directive';
 import { TooltipModule } from 'primeng/tooltip';
 import { RoleEditComponent } from '../roles/role-edit/role-edit.component';
@@ -34,22 +32,15 @@ import { RouterLink } from '@angular/router';
 export class UsersComponent {
   users: User[] = [];
   usersServiceSubscription: Subscription;
-  groups: Group[] = [];
-  groupsServiceSubscription: Subscription;
   isAddingUser = false;
   isAddingRole = false;
   selectedUserId = -1;
 
   constructor(
     private usersService: UsersService,
-    private groupsService: GroupsService,
   ) {
     this.usersServiceSubscription = this.usersService.getAll().subscribe(users => {
       this.users = users;
-    });
-
-    this.groupsServiceSubscription = this.groupsService.groups$.subscribe(groups => {
-      this.groups = groups;
     });
 
   }

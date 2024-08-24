@@ -13,7 +13,9 @@ export class GroupsService {
   private readonly apiUrl = `${API_URL}/groups`;
 
   get groups$() {
-    return this._groups$.asObservable();
+    return this.getAll().pipe(
+      switchMap(() => this._groups$.asObservable()),
+    );
   }
 
   constructor(private httpClient: HttpClient) {

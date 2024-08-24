@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { Roles } from '../roles.enum';
 import { Group } from '../../groups/group.model';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RoleService } from '../role.service';
+import { RolesService } from '../roles.service';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
@@ -34,7 +34,7 @@ export class RoleEditComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private roleService: RoleService,
+    private roleService: RolesService,
     private groupsService: GroupsService,
   ) {
 

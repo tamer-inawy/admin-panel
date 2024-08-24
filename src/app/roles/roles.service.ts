@@ -8,7 +8,7 @@ import { Roles } from './roles.enum';
 @Injectable({
   providedIn: 'root'
 })
-export class RoleService {
+export class RolesService {
   private readonly apiUrl = `${API_URL}/roles`;
 
   constructor(private httpClient: HttpClient) { }
